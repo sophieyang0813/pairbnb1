@@ -5,7 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 gem "figaro"
+#privacy protection: 1) reads a config/application.yml file, 2) sets environment variables before anything else is configured in the Rails application.
 
 gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
