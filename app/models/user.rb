@@ -1,5 +1,23 @@
 class User < ApplicationRecord
   include Clearance::User
+    has_many :authentications, dependent: :destroy
+    # for depedent: :destroy see active record associations
 
-  include Clearance::User
-end
+    def self.create_with_auth_and_hash(authentication, auth_hash)
+        # byebug
+      user = self.create!(
+        name: auth_hash["info"]["name"],
+        email: auth_hash["info"]["email"],
+        password: (('a'..'z').to_a + ('0'..'9').to_a).sample(8).join )
+      user.authentications << authentication
+      return user
+    end
+
+
+    # grab fb_token to access Facebook for user data
+    def fb_token
+        # byebug
+      x = self.authentications.find_by(provider: 'facebook')
+      return x.token unless x.nil?
+    end
+ end
