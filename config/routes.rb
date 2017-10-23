@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    root "users#new"
+    root "statics#home"
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
   resource :session, controller: "sessions", only: [:create]
 
