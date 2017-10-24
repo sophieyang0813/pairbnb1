@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     root "statics#home"
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
-  resources :listings, controller: "listings", only: [:create, :new, :edit]
+  resources :listings, controller: "listings", only: [:create, :new, :edit, :index]
 
   resource :session, controller: "sessions", only: [:create]
 
