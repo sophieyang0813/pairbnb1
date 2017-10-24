@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
     root "statics#home"
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
+  resources :listings, controller: "listings", only: [:create, :new, :edit]
+
   resource :session, controller: "sessions", only: [:create]
 
   resources :users, controller: "users", only: [:create] do
-    resource :password,
-      controller: "passwords",
-      only: [:create, :edit, :update]
+    resource :password, controller: "passwords", only: [:create, :edit, :update]
   end
 
   get "/sign_in" => "sessions#new", as: "sign_in"
