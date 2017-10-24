@@ -1,7 +1,31 @@
-<h1>Homes</h1>
+<h1>Where would you like to go?</h1>
 
+
+<div>
 <% @listings.each do |l| %>
-<%= l.location %>
-<%= l.room_type %>
-<%= l.guest_num %>
+<h3><%= l.location %></h3>
+<p><%= l.room_type %></p>
 <% end %>
+</div>
+
+
+<%= button_to 'Go to previous page', listings_path, method: :get, params: { page: @page.to_i - 1} %>
+<%= button_to 'Go to next page', listings_path, method: :get, params: { page: @page.to_i + 1} %>
+
+
+if click on go to next page, then params increases by 1, offset increases by
+
+<!-- n =    ()
+
+pg1  offset (0)
+pg2  offset (5)
+pg3  offset(10)
+pg4  offset(15)
+
+n * 5 - 5 = Listing.all
+offset(n* 5 -5 ) == Listing.all
+
+20
+
+
+n    offset (n*5 - 5) -->

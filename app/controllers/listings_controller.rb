@@ -1,7 +1,25 @@
 class ListingsController <  ApplicationController
 
     def index
-        @listings = Listing.all
+        if params[:page]# iahve parms page, i offset by the params page #true(not false or not nil))
+          if params[:page].empty? #params page is empty
+            @page = 1
+            @listings = Listing.all.limit(10).offset(@page * 10)
+          else
+            @page = params[:page].to_i
+            @listings = Listing.all.limit(10).offset(@page * 10)
+            #offset not by 5 but by whatever params page is
+            if @listings.include?(Listing.all.last)
+              @page = params[:page].to_i
+              @listings = Listing.all.limit(10).offset(@page * 10)
+            else
+            end
+          end
+        else #i jsut do it normally (show first five, no need to offest)
+            # @page = 1
+            @listings = Listing.all.limit(10).offset(0)
+        end
+
     end
 
     def new
@@ -23,7 +41,7 @@ class ListingsController <  ApplicationController
 
     private
 
-        def listing_params
-            params.require(:listing).permit(:guest_num, :location, :room_type)
-        end
+     def listing_params
+         params.require(:listing).permit(:guest_num, :location, :room_type)
+     end
 end
