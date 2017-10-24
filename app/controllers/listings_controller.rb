@@ -24,6 +24,10 @@ class ListingsController <  ApplicationController
 
     def new
         @listing = Listing.new
+        if current_user.moderator?
+          flash[:notice] = "Sorry. You are not allowed to perform this action."
+          return root_path, notice: "Sorry, You do not have the permission to verify a property."
+        end
     end
 
     def create

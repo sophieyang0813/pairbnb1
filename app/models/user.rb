@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  enum role: [ :customer, :admin, :moderator ]
+
   include Clearance::User
     has_many :authentications, dependent: :destroy
     has_many :listings
