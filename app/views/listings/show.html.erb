@@ -1,0 +1,10 @@
+<h1>Congratulations! Your listing has been posted.</h1>
+
+
+
+
+<% @listing.avatars.each do |image| %>
+<%= image_tag image.url(:thumb) %>
+<% end %>
+
+

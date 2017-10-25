@@ -1,6 +1,15 @@
 class ListingsController <  ApplicationController
 
-    def index
+
+    #182 image uploading new & update methods
+    def show
+      @listing = Listing.find(params[:id])
+    end
+     #########     182   ###########
+
+
+      # 180 index method is for the pagination;
+      def index
         if params[:page]# iahve parms page, i offset by the params page #true(not false or not nil))
           if params[:page].empty? #params page is empty
             @page = 1
@@ -24,6 +33,7 @@ class ListingsController <  ApplicationController
 
     def new
         @listing = Listing.new
+        #181 authorization
         if current_user.moderator?
           flash[:notice] = "Sorry. You are not allowed to perform this action."
           return root_path, notice: "Sorry, You do not have the permission to verify a property."
@@ -37,7 +47,7 @@ class ListingsController <  ApplicationController
         @listing.user_id = current_user.id
 
         if @listing.save
-            render 'host'
+            render 'show'
         else
             render 'new'
         end
@@ -46,6 +56,6 @@ class ListingsController <  ApplicationController
     private
 
      def listing_params
-         params.require(:listing).permit(:guest_num, :location, :room_type)
+         params.require(:listing).permit(:guest_num, :location, :room_type, {avatars:[]})
      end
 end

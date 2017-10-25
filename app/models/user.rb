@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  enum role: [ :customer, :admin, :moderator ]
+  mount_uploader :avatar, AvatarUploader #182 uploading image; CarrierWave gem
+  enum role: [ :customer, :admin, :moderator ] # 181 user authorization; ENUM active record class
 
   include Clearance::User
     has_many :authentications, dependent: :destroy
