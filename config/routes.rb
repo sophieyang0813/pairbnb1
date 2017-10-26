@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
     root "statics#home"
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
-  resources :listings, controller: "listings", only: [:create, :new, :edit, :index, :show, :update]
+
+
+  resources :listings, controller: "listings", only: [:create, :new, :edit, :index, :show, :update] do
+   resources :reservations, controller: "reservations", only: [:create, :new, :index, :show]
+   end
 
 
   resource :session, controller: "sessions", only: [:create]

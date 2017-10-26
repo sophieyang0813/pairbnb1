@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_and_belongs_to_many :listings
+  #IS THIS CORRECT? 185 rservation; see listing model- does 'belong to many' necessary? if so then do I delete has many in line 11?
+
+
   mount_uploader :avatar, AvatarUploader #182 uploading image; CarrierWave gem
   enum role: [ :customer, :admin, :moderator ] # 181 user authorization; ENUM active record class
 

@@ -1,7 +1,10 @@
-<h1>Congratulations! Your listing has been posted.</h1>
+<h1>Congratulations! your listing has been posted</h1>
+<h2>Listing information</h2>
 
 
 
+<h3><%= @listing.location %></h3>
+<p><%= @listing.room_type %></p>
 
 <% @listing.avatars.each do |image| %>
 <%= image_tag image.url(:thumb) %>

@@ -1,0 +1,19 @@
+<h2>Make a Reservation!</h2>
+
+
+<%= form_for @reservation, url:{action: "create"} do |f| %>
+    When would you like to check in? <%= f.text_field :check_in %>
+    When would you like to check out?  <%= f.text_field :check_out %>
+    <%= f.submit "Make a reservation" %>
+<% end %>
+
+
+<h3><%= @listing.location %></h3>
+<p><%= @listing.room_type %></p>
+
+<% @listing.avatars.each do |image| %>
+<%= image_tag image.url(:thumb) %>
+<% end %>
+
+
+
