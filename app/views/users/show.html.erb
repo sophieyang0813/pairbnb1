@@ -1,0 +1,29 @@
+<h1>Your profile Page</h1>
+<h3>users/show.html.erb</h3>
+
+
+
+<!-- 182. image upload  -->
+<%= image_tag @user.avatar_url(:medium).to_s %>
+
+<h2>Your listings</h2>
+
+<!-- loop through each listing
+find_by(current_user) -->
+<!-- active association allows you to do current_user.listings -->
+<% current_user.listings.each do |x| %>
+<h3><%= link_to "listing" + x.id.to_s , listing_path(x.id) %><br></h3>
+<% end %>
+
+
+
+
+<h3>your upcoming trip</h3>
+<!-- reservation that the user made -->
+
+<h3>your upcoming hosting</h3>
+
+<!-- reservation that other users made to the current user's listing  -->
+
+<!-- 1. someone has to make an reservation -->
+<!-- 2. this data has to be saved -->

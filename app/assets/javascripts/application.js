@@ -11,5 +11,21 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require moment
+//= require bootstrap-datetimepicker
 //= require turbolinks
 //= require_tree .
+
+
+// for #185. datepicker
+
+
+
+$(document).ready(function(){
+  $('#datetimepicker1').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+  $('#datetimepicker2').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+});

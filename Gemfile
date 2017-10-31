@@ -5,7 +5,35 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'braintree'
+#190 payment gateway & APIs 1
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'# 185 reservations; date picker
+
+
+
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'  #resizing
+gem 'fog'  # AWS amazon
+# 184. for image upload
+
+
+gem 'faker'
+#database seeding; populating with fake data for testing purposes
+
+
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+#for user authentication
+
+
+
+gem "figaro"
+#privacy protection: 1) reads a config/application.yml file, 2) sets environment variables before anything else is configured in the Rails application.
+
+gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record

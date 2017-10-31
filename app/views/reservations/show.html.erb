@@ -1,0 +1,131 @@
+
+
+<!-- 190 step 8: generate client token & embed in javascript -->
+<!-- Load the Client component. -->
+<script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+<!-- Load the Hosted Fields component. -->
+<script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
+<h1>Reservation successful!</h1>
+
+<h3>Duration: <%= ((@reservation.check_out) - (@reservation.check_in))/86400 %> day(s) </h3>
+<p>Check in: <%= @reservation.check_in.to_date %> </p>
+<p>Check out: <%= @reservation.check_out.to_date %> </p>
+<p>Price per night: USD$<%= @listing.price_per_night %></p>
+
+<h3>total price: USD$ <%= (@listing.price_per_night) * (((@reservation.check_out) - (@reservation.check_in))/86400) %> </h3>
+
+
+
+
+
+
+
+
+
+
+<div class= "demo-frame">
+	<%= form_for :checkout_form, url: listing_reservation_reservations_checkout_path(@listing,@reservation), html: { id: "cardForm"} do |form| %>
+
+	<%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"}  %>
+
+	<div id="card-number" class="hosted-field"></div>
+
+	<%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
+
+	<div id ="expiration-date" class="hosted-field"></div>
+
+	<%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
+    <div id="cvv" class="hosted-field"></div>
+
+	<%= form.hidden_field "payment_method_nonce" %>
+
+	<div class="button-container">
+		<%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %> 
+	</div>
+	<% end %> 
+</div>
+
+
+
+<!-- Javascript  -->
+
+<script type="text/javascript">
+
+ var form = document.querySelector('#cardForm');
+ var submit = document.querySelector('#submit-payment-btn');
+ var authorization = '<%= @client_token%>';
+
+
+      braintree.client.create({
+        authorization: authorization 
+      }, function (clientErr, clientInstance) {
+        if (clientErr) {
+          // console.error(clientErr); Q1 
+          return;
+        }
+
+        // This example shows Hosted Fields, but you can also use this
+        // client instance to create additional components here, such as
+        // PayPal or Data Collector.
+
+        braintree.hostedFields.create({
+          client: clientInstance,
+          styles: {
+            'input': {
+              'font-size': '14px'
+            },
+            'input.invalid': {
+              'color': 'red'
+            },
+            'input.valid': {
+              'color': 'green'
+            }
+          },
+          fields: {
+            number: {
+              selector: '#card-number',
+              placeholder: '4111 1111 1111 1111'
+            },
+            cvv: {
+              selector: '#cvv',
+              placeholder: '123'
+            },
+            expirationDate: {
+              selector: '#expiration-date',
+              placeholder: '10/2019'
+            }
+          }
+        }, function (hostedFieldsErr, hostedFieldsInstance) {
+          if (hostedFieldsErr) {
+            // console.error(hostedFieldsErr);  Q2  displays the error message
+            return;
+          }
+
+          submit.removeAttribute('disabled');
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+
+
+            // step 3(braintree picture)
+            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+              if (tokenizeErr) {
+                console.error(tokenizeErr);
+                return;
+              }
+
+              // If this was a real integration, this is where you would
+              // send the nonce to your server.
+              document.querySelector('input[name="checkout_form[payment_method_nonce]"]').value = payload.nonce;
+              
+              form.submit();
+            });
+          }, false);
+        });
+      });
+
+
+</script>

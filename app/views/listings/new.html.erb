@@ -1,0 +1,19 @@
+<h1>Hi, <%= current_user.name %>! Let's get started listing your space</h1>
+
+<h2>listing/new</h2>
+
+
+
+<div> What kind of place do you have? </div>
+
+
+<%= form_for @listing, url:{action: "create"} do |f| %>
+    how many guest? <%= f.text_field :guest_num %>
+    location?  <%= f.text_field :location %>
+    room type? <%= f.text_field :room_type %>
+    photos?  <%= f.file_field :avatars, multiple: true %>
+    <%= f.submit "Continue" %>
+<% end %>
+
+
+
