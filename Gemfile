@@ -5,6 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+
+gem 'letter_opener', :group => :development 
+#192 
+
 gem 'braintree'
 #190 payment gateway & APIs 1
 
