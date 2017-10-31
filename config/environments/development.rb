@@ -1,6 +1,23 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+
+
+ #192 mailer; gem mail for gmail configuration 
+ config.action_mailer.delivery_method = :smtp
+ config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'gmail.com',
+  user_name:            ENV['MAIL_USER_NAME'],
+  password:             ENV['MAIL_PASSWORD'],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
+  #192 mailer; gem letter opener => now any email will pop up in your brower instead of being sent.
+  # if you want to change app, override. see letter_opener github
+  # config.action_mailer.delivery_method = :letter_opener
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

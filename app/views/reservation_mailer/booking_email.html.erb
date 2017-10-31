@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulations! You have received a booking from <%= @customer.name %></h1>
+
+	<h2> Dear <%= @host.name %>, </h2>
+
+    <p><%= @customer.name %> is looking forward to stay at your place
+    	from <%=  @reservation.check_in.to_date %> to <%= @reservation.check_out.to_date %></p>
+
+    <p>You can see details of your new reservation here: <%= @url %></p>
+
+    <p>Happy pairbnb!</p>
+
+
+  </body>
+</html>
