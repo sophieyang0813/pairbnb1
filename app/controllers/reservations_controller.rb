@@ -21,7 +21,7 @@ class ReservationsController <  ApplicationController
       if @reservation.save
         redirect_to listing_reservation_path(@listing,@reservation)
         #192 mailer 
-        ReservationMailer.booking_email( @listing.user, @reservation.user, @reservation.id).deliver_later
+        # ReservationMailer.booking_email( @reservation.user, @listing.user, @reservation.id).deliver_later
         #customer email: @reservation.user.email #host email:  @listing.user.email  #reservation_id: 
       else
         flash[:notice] = "Sorry. Your reservation date overlaps with the existing ones."
@@ -58,6 +58,11 @@ class ReservationsController <  ApplicationController
 
     if result.success?
       redirect_to :root, :flash => { :success => "Transaction successful!" }
+         #192 mailer 
+         @listing = Listing.find(params[:listing_id])
+         @reservation = Reservation.find(params[:reservation_id])
+        ReservationMailer.booking_email( @reservation.user, @listing.user, @reservation.id).deliver_later
+        #customer email: @reservation.user.email #host email:  @listing.user.email  #reservation_id: 
     else
       redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
     end

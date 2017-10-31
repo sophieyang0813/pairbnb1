@@ -1,5 +1,5 @@
 class ReservationMailer < ApplicationMailer
-	default from: 'notifications@pairbnb.com'
+	default from: 'pairbnb.test2017@gmail.com'
 
 
 	def booking_email(customer, host, reservation_id)

@@ -5,10 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'sidekiq'
+#193 background jobs for Emails 
 
-
+gem 'mail' #action mailer configuration for Gmail 
 gem 'letter_opener', :group => :development 
-#192 
+#192 that shows the sample on the browser, instead of sending the real email
 
 gem 'braintree'
 #190 payment gateway & APIs 1
