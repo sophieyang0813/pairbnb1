@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_and_belongs_to_many :listings
+  # has_and_belongs_to_many :listings
   #IS THIS CORRECT? 185 rservation; see listing model- does 'belong to many' necessary? if so then do I delete has many in line 11?
 
 

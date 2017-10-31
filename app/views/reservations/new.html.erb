@@ -1,29 +1,26 @@
 <h2>Make a Reservation!</h2>
 
-
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-6'>
 <%= form_for @reservation, url:{action: "create"} do |f| %>
-    When would you like to check in?  <%= f.text_field :check_in %>
-    <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <div class='form-group'>
+    When would you like to check in?
+        <%= f.text_field :check_in, id: 'datetimepicker1' %>
     </div>
+    <div class='form-group'>
+    When would you like to check out?
+        <%= f.text_field :check_out, id: 'datetimepicker2' %>
     </div>
-    When would you like to check out?  <%= f.text_field :check_out %>
     <%= f.submit "Make a reservation" %>
 <% end %>
+</div>
+</div>
+</div>
 
-
-<h3><%= @listing.location %></h3>
-<p><%= @listing.room_type %></p>
+<h3>Location: <%= @listing.location %></h3>
+<p>Room type: <%= @listing.room_type %></p>
+<p>Price per night: USD$<%= @listing.price_per_night %></p>
 
 <% @listing.avatars.each do |image| %>
 <%= image_tag image.url(:thumb) %>

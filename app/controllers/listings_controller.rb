@@ -47,7 +47,7 @@ class ListingsController <  ApplicationController
         @listing.user_id = current_user.id
 
         if @listing.save
-            render 'show'
+            render 'show', notice: 'Listing was successfully created.'
         else
             render 'new'
         end

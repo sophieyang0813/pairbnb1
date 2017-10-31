@@ -7,7 +7,7 @@
 <p><%= @listing.room_type %></p>
 
 <% @listing.avatars.each do |image| %>
-<%= image_tag image.url(:thumb) %>
+<%= image_tag image.url(:medium) %>
 <% end %>
 
 

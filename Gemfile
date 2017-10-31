@@ -5,16 +5,18 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'braintree'
+#190 payment gateway & APIs 1
 
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-# 185 reservations; date picker
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'# 185 reservations; date picker
+
 
 
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'  #resizing
-# for image upload
+gem 'fog'  # AWS amazon
+# 184. for image upload
 
 
 gem 'faker'
