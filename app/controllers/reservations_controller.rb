@@ -1,4 +1,5 @@
 class ReservationsController <  ApplicationController
+  
 
   def new 
    @reservation = Reservation.new
@@ -7,6 +8,7 @@ class ReservationsController <  ApplicationController
 
 
   def index
+
   end
 
   def create
@@ -59,9 +61,9 @@ class ReservationsController <  ApplicationController
     if result.success?
       redirect_to :root, :flash => { :success => "Transaction successful!" }
          #192 mailer 
-         @listing = Listing.find(params[:listing_id])
-         @reservation = Reservation.find(params[:reservation_id])
-        ReservationMailer.booking_email( @reservation.user, @listing.user, @reservation.id).deliver_later
+        @listing = Listing.find(params[:listing_id])
+        @reservation = Reservation.find(params[:reservation_id])
+        ReservationJob.perform_later(@reservation.user, @listing.user, @reservation.id)
         #customer email: @reservation.user.email #host email:  @listing.user.email  #reservation_id: 
     else
       redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }

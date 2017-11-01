@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
     root "statics#home"
-    
+
+  get 'listings/search' => 'listings#search'
+
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
 
 

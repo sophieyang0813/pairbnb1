@@ -1,15 +1,23 @@
 class ListingsController <  ApplicationController
-
-
-    #182 image uploading new & update methods
+  
+    
     def show
       @listing = Listing.find(params[:id])
+      # 182 image uploading new & update methods
     end
-     #########     182   ###########
 
+    def search
+      #195B search engine see listing model 
+        @listings = Listing.all
+        filtering_params(params).each do |key, value|
+          @listings = @listings.public_send(key, value) if value.present?
+        end 
+        # byebug 
+    end
 
-      # 180 index method is for the pagination;
+      
       def index
+        #180 pagination 
         if params[:page]# iahve parms page, i offset by the params page #true(not false or not nil))
           if params[:page].empty? #params page is empty
             @page = 1
@@ -41,7 +49,6 @@ class ListingsController <  ApplicationController
     end
 
     def create
-
         @listing =Listing.new(listing_params)
         # byebug
         @listing.user_id = current_user.id
@@ -53,9 +60,18 @@ class ListingsController <  ApplicationController
         end
     end
 
+
     private
 
+
+     def filtering_params(params)
+      params.slice(:price_range, :city, :room_type)
+     end 
+     #195C search engine 
+
+
      def listing_params
+          # if !self.search, 
          params.require(:listing).permit(:guest_num, :location, :room_type, {avatars:[]})
      end
 end
