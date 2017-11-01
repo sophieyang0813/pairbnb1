@@ -8,10 +8,11 @@ class ListingsController <  ApplicationController
 
     def search
       #195B search engine see listing model 
-        @listings = Listing.where(nil)
+        @listings = Listing.all
         filtering_params(params).each do |key, value|
-        @listings = @listings.public_send(key, value) if value.present?
+          @listings = @listings.public_send(key, value) if value.present?
         end 
+        # byebug 
     end
 
       
@@ -48,7 +49,6 @@ class ListingsController <  ApplicationController
     end
 
     def create
-
         @listing =Listing.new(listing_params)
         # byebug
         @listing.user_id = current_user.id
@@ -60,16 +60,18 @@ class ListingsController <  ApplicationController
         end
     end
 
+
     private
 
 
      def filtering_params(params)
-      params.slice(:price_range, :city, :starts_with)
+      params.slice(:price_range, :city, :room_type)
      end 
      #195C search engine 
 
 
      def listing_params
+          # if !self.search, 
          params.require(:listing).permit(:guest_num, :location, :room_type, {avatars:[]})
      end
 end

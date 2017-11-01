@@ -3,12 +3,36 @@
 
 
 
+
+ <button id ='city'> CITY </button>
+<button id = 'room_type'> Room Type </button>
+
 <div>
-<%= form_tag :listings, url:{action: "search"} do  %>
-  <%= text_field_tag :starts_with %>
-  <%= submit_tag %>
-<% end %> 
+	<%= form_tag ('/listings/search'), {method: :get} do %>
+	city  <%= text_field_tag :city %>
+	  <%= submit_tag "Search"  %>
+	<% end %> 
 </div>
+
+
+<div>
+	<%= form_tag ('/listings/search'), {method: :get} do %>
+	 room type <%= text_field_tag :room_type %>
+	  <%= submit_tag "Search"  %>
+	<% end %> 
+</div>
+
+<div>
+	<%= form_tag ('/listings/search'), {method: :get} do %>
+	 check-in <%= text_field_tag :check_in %>
+	 check-out <%= text_field_tag :check_out %>
+	  <%= submit_tag "Search"  %>
+	<% end %> 
+</div>
+
+
+
+
 
 
 <!-- list all -->
@@ -23,28 +47,7 @@
 
 
 
-
-
-
-
-
 <%= button_to 'Go to previous page', listings_path, method: :get, params: { page: @page.to_i - 1} %>
 <%= button_to 'Go to next page', listings_path, method: :get, params: { page: @page.to_i + 1} %>
 
 
-if click on go to next page, then params increases by 1, offset increases by
-
-<!-- n =    ()
-
-pg1  offset (0)
-pg2  offset (5)
-pg3  offset(10)
-pg4  offset(15)
-
-n * 5 - 5 = Listing.all
-offset(n* 5 -5 ) == Listing.all
-
-20
-
-
-n    offset (n*5 - 5) -->

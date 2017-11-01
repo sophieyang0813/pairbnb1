@@ -8,7 +8,17 @@ class Listing < ApplicationRecord
     #195A see index method 
   scope :price_range, -> (price) { where price_per_night: price }
   scope :city, -> (location) { where location: location }
-  scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
+  scope :room_type, -> (type) { where room_type: type }
+  # scope :dates, -> (checkin, checkout) { where check_in: checkin, check_out: checkout }
+
+  # def self.dates 
+  # 	where(check_in: 'params' && check_out: 'params')
+  # end 
+  # scope :dates -> (dates) { where check_in}
+
+  # reservations.where("(? >= check_in AND ? <= check_out) OR (? >= check_in AND ? <= check_out)", self.check_in, self.check_in, self.check_out, self.check_out).count > 1
+  #     errors.add(:check_in, " overlaps")
+  # scope :starts_with, -> (name) { where("room_type like ?", "#{name}%")}
 
 
 end
