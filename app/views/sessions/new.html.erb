@@ -1,0 +1,55 @@
+
+<br>
+<hr>
+
+<div class = "col-md-12"></div>
+
+<div class = "col-md-3"></div>
+
+<div class = "col-md-6 center1 container" >
+
+	<!-- <div class = "col-md-6 border-right">
+		<h1>hellooo</h1>
+	</div>
+
+
+	<div class = "col-md-6"> -->
+			<div id="clearance" class="sign-in">
+			  <h2><%= t(".title") %></h2>
+			  <br>
+
+				 <%= form_for :session, url: session_path do |form| %>
+				  <div class="text-field sgnupbox">
+				    <% form.label :email %>
+				    <%= form.text_field :email, type: 'email', placeholder: 'email' %>
+				  </div>
+				  <div class="password-field sgnupbox">
+				    <% form.label :password %>
+				    <%= form.password_field :password , placeholder: 'password' %>
+				  </div>
+				 <br>
+				  <div class="submit-field sgnupbox">
+				    <%= form.submit %>
+				  </div>
+				  <hr>
+				  <div class="other-links">
+				    <% if Clearance.configuration.allow_sign_up? %>
+				      <%= link_to t(".sign_up"), sign_up_path %> |
+				    <% end %>
+				    <%= link_to t(".forgot_password"), new_password_path %>
+				  </div>
+				  <br>
+				<% end %>
+			</div>
+<!-- 	</div> -->
+
+<br>
+<br>
+<br>
+<br>
+
+
+</div>
+
+
+<div class = "col-md-3"></div>
