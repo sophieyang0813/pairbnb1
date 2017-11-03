@@ -2,8 +2,17 @@
 
 
 
+<div class = "col-md-12">
+
 <% @listings.each do |x| %> 
-	<p><%= x.location %></p>
-	<p><%= x.room_type %></p>
+	<h3><%= x.location %></h3>
+	Room type: <p><%= x.room_type %></p>
+	<p><%= link_to "See available dates!" , new_listing_reservation_path(x.id) %></p>
+		<% x.avatars.each do |image| %>
+		<%= image_tag image.url(:medium) %>
+		<% end %>
+
 <% end %>
 
+
+</div>

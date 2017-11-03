@@ -1,6 +1,33 @@
 class ListingsController <  ApplicationController
-  
     
+
+  def home 
+  end 
+
+  def edit
+    @listing = Listing.find(params[:id])
+  end
+
+  #182 image uploading; edit & update go hand-in-hand
+  def update
+
+    @listing = Listing.find(params[:id])
+      if @listing.update(listing_params)
+     # @listing.save
+     redirect_to :listing, :flash => { :success => "Updated successfully!" }
+      else 
+     redirect_to :edit_listing, :flash => { :error => "Oops, please try again" }
+      # render template: "listings/show", :flash => { :success => "Updated successfully!" }
+      end
+
+
+  end
+    
+
+
+
+
+
     def show
       @listing = Listing.find(params[:id])
       # 182 image uploading new & update methods
@@ -8,7 +35,8 @@ class ListingsController <  ApplicationController
 
     def search
       #195B search engine see listing model 
-        @listings = Listing.all
+        @listings = Listing.where(nil)
+        # Pgsearch.multisearch(params[:query])
         filtering_params(params).each do |key, value|
           @listings = @listings.public_send(key, value) if value.present?
         end 
@@ -65,13 +93,13 @@ class ListingsController <  ApplicationController
 
 
      def filtering_params(params)
-      params.slice(:price_range, :city, :room_type)
+      params.slice(:price_range, :city, :room_type, :everything)
      end 
      #195C search engine 
 
 
      def listing_params
           # if !self.search, 
-         params.require(:listing).permit(:guest_num, :location, :room_type, {avatars:[]})
+         params.require(:listing).permit(:guest_num, :location, :room_type, :price_per_night, {avatars:[]})
      end
 end

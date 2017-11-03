@@ -10,7 +10,17 @@
 <%= form_for @listing, url:{action: "create"} do |f| %>
     how many guest? <%= f.text_field :guest_num %>
     location?  <%= f.text_field :location %>
-    room type? <%= f.text_field :room_type %>
+    Price per night?  <%= f.text_field :price_per_night %>
+    room type?  <!-- <#%= f.text_field :room_type %> -->
+	 <%= f.radio_button "room_type", "Private room" %>
+	 <%= f.label :room_type, "Private room" %>
+
+	 <%= f.radio_button "room_type", "Shared room" %>
+	 <%= f.label :room_type, "Shared room" %>
+
+	 <%= f.radio_button "room_type", "Entire place" %>
+	 <%= f.label :room_type, "Entire place" %>
+
     photos?  <%= f.file_field :avatars, multiple: true %>
     <%= f.submit "Continue" %>
 <% end %>

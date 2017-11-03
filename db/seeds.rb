@@ -7,7 +7,7 @@ user['password'] = 'asdf'
 
 
 ActiveRecord::Base.transaction do
-    20.times do
+    5.times do
     user['name'] = Faker::Name.last_name
     user['email'] = Faker::Internet.email
 
@@ -25,11 +25,12 @@ uids = []
 User.all.each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
-    40.times do
+    10.times do
         listing['guest_num'] = rand(1..9)
-        listing['location'] = Faker::Address.city
-        listing['room_type'] = ["House", "Entire Floor", "Condominium", "Villa", "Townhouse", "Castle", "Treehouse", "Igloo", "Yurt", "Cave", "Chalet", "Hut", "Tent", "Other"].sample
+        listing['location'] = ["Tokyo", "Seoul", "New York", "London", "Singapore", "Beijing", "Berlin", "Moscow"].sample
+        listing['room_type'] = ["Private room", "Shared room", "Entire place"].sample
         listing['user_id'] = uids.sample
+        listing['price_per_night'] = rand(10..100)
 
         Listing.create(listing)
     end
