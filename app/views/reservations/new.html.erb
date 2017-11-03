@@ -1,30 +1,86 @@
-<h2>Make a Reservation!</h2>
+<div class = 'col-md-12'>
+    
+    
+    <hr>
 
-<div class='container'>
-    <div class='row'>
-        <div class='col-md-6'>
-<%= form_for @reservation, url:{action: "create"} do |f| %>
-    <div class='form-group'>
-    When would you like to check in?
-        <%= f.text_field :check_in, id: 'datetimepicker1' %>
+    <h2 class = 'text_center'><strong><%= @listing.room_type %> | <%= @listing.location %><strong></h2>
+
+</div>
+
+
+
+<div class = 'col-md-6 text_center rsvtion_pic_box border-right'>
+
+    <div id='myCarousel' class='carousel slide'>
+        <ol class = "carousel-indicators">
+            <% @listing.avatars.length.times do |i| %>
+                <% if i == 0 %>
+                    <li data-target = "#myCarousel" data-slide-to = "0" class = "active"></li>
+                <% else %>
+                 <li data-target = "#myCarousel" data-slide-to = "<%= i %>"></li>
+                <% end %>
+            <% end %>
+        </ol> 
+
+        <div class='carousel-inner'>
+            <% @listing.avatars.each_with_index do |image, i| %>
+                <div class='item <%= "active" if i == 0 %>'>
+                    <%= image_tag image.url(:medium) %>
+                </div>
+            <% end %>
+        </div>
+
+
+        <a class = "carousel-control left" href = "#myCarousel" data-slide = "prev">
+        <span class = "icon-prev"></span>
+        </a>
+
+         <a class = "carousel-control right" href = "#myCarousel" data-slide = "next">
+         <span class = "icon-next"></span>
+         </a>
+
     </div>
-    <div class='form-group'>
-    When would you like to check out?
-        <%= f.text_field :check_out, id: 'datetimepicker2' %>
+
+
+
+
+
+
+</div>
+
+
+
+
+<div class='container col-md-6'>
+
+<br>
+<br>
+   <div class = 'border-right rsv_calendar'>
+        <p class ="inline"><strong>USD$<%= @listing.price_per_night %></strong></p>
+        <p class = "fontgrey"> per night | Upto <%=@listing.guest_num %> guest(s) </p>
+        <hr>
+        <%= form_for @reservation, url:{action: "create"} do |f| %>
+        <div class='form-group'>
+            <h3 class='inline'>Check in   |     </h3>
+            <h3 class='inline calendar_box'><%= f.text_field :check_in, id: 'datetimepicker1' %></h3>
+        </div>
+        <div class='form-group'>
+            <h3 class='inline'>Check out     |     </h3>
+            <h3 class='inline calendar_box'><%= f.text_field :check_out, id: 'datetimepicker2' %></h3>
+        </div>
+        <%= f.submit "Make a reservation" %>
+        <% end %>
     </div>
-    <%= f.submit "Make a reservation" %>
-<% end %>
-</div>
-</div>
 </div>
 
-<h3>Location: <%= @listing.location %></h3>
-<p>Room type: <%= @listing.room_type %></p>
-<p>Price per night: USD$<%= @listing.price_per_night %></p>
 
-<% @listing.avatars.each do |image| %>
-<%= image_tag image.url(:thumb) %>
-<% end %>
 
+
+<div class = 'col-md-12'>
+    
+    
+    <hr>
+
+</div>
 
 

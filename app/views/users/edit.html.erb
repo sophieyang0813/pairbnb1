@@ -1,7 +1,15 @@
 
 <h1> Update your profile </h1>
 
+
+
   <%= form_for @user do |form| %>
+
+         <div>
+          <%= image_tag @user.avatar_url(:small).to_s %>
+          <%= form.file_field :avatar %>
+        </div>
+
         <div class="text-field">
           <%= form.label :email %>
           <%= form.text_field :email, type: 'email' %>
@@ -16,11 +24,9 @@
           <%= form.label :password %>
           <%= form.password_field :password %>
         </div>
-        <div>
-          <%= form.file_field :avatar %>
-        </div>
+
     <div class="submit-field">
-      <%= form.submit %>
+      <%= form.submit "Update Profile" %>
     </div>
 
   <% end %>

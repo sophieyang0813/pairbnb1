@@ -29,3 +29,17 @@ $(document).ready(function(){
     format: 'DD/MM/YYYY'
   });
 });
+
+
+// listing#index roomtype search 
+$(document).ready(function(){
+	$('#roomtype').click(function(e){
+		// var clickedBtn =  e.currentTarget 
+		// $(clickedBtn).fadeOut('fast');
+		// $(clickedBtn).append( '<p> why ruby interporation ++ does not work?+</p>')
+    $(".radio_buttons").css("display","block");
+	});
+
+});
+
+

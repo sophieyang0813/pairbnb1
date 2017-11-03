@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-    root "statics#home"
+    # root "statics#home"
+     root "listings#index"
 
   get 'listings/search' => 'listings#search'
 

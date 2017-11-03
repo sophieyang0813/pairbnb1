@@ -1,53 +1,111 @@
-<h1>Where would you like to go?</h1>
+
+<!-- <div class="form-group" >
+<button> CITY </button>
+<button id ='roomtype'>Room Type</button>
+</div>  -->
+
+<!-- <div class = "col-md-12">
+
+<h1 class = "center">Your next destination</h1>
   <p>listing/index</p>
 
-
-
-
- <button id ='city'> CITY </button>
-<button id = 'room_type'> Room Type </button>
-
-<div>
-	<%= form_tag ('/listings/search'), {method: :get} do %>
-	city  <%= text_field_tag :city %>
-	  <%= submit_tag "Search"  %>
-	<% end %> 
-</div>
-
-
-<div>
-	<%= form_tag ('/listings/search'), {method: :get} do %>
-	 room type <%= text_field_tag :room_type %>
-	  <%= submit_tag "Search"  %>
-	<% end %> 
-</div>
-
-<div>
-	<%= form_tag ('/listings/search'), {method: :get} do %>
-	 check-in <%= text_field_tag :check_in %>
-	 check-out <%= text_field_tag :check_out %>
-	  <%= submit_tag "Search"  %>
-	<% end %> 
-</div>
-
-
-
-
-
+</div> -->
 
 <!-- list all -->
-<div>
+
+<div class = "center_box">
+
 <% @listings.each do |l| %>
-<h3><%= l.location %></h3>
-<p><%= l.room_type %></p>
-<p>Price per night: USD$<%= l.price_per_night %></p>
-<p><%= link_to "make a reservation" , new_listing_reservation_path(l.id) %></p>
+	<div class = "col-md-4 border-right padding">
+	<p class ="inline"><strong>USD$<%= l.price_per_night %></strong></p>
+	<p class ="inline"> | <%= l.location %></p>
+	<p class = "fontgrey"><%= l.room_type %></p>
+
+	<!-- <p> Update your listing? <#%= link_to "listing" + l.id.to_s , edit_listing_path(l.id) %></p> -->
+		
+		<div id='myCarousel<%= l.id %>' class='carousel slide col-md-4'>
+			<ol class = "carousel-indicators">
+				<% l.avatars.length.times do |i| %>
+					<% if i == 0 %>
+						<li data-target = "#myCarousel<%= l.id %>" data-slide-to = "0" class = "active"></li>
+					<% else %>
+						<li data-target = "#myCarousel<%= l.id %>" data-slide-to = "<%= i %>"></li>
+					<% end %>
+				<% end %>
+			</ol>	
+			
+			<a href= /listings/<%=l.id%>/reservations/new target="_blank">
+			<div class='carousel-inner'>
+				<% l.avatars.each_with_index do |image, i| %>
+					<div class='item <%= "active" if i == 0 %>'>
+						<%= image_tag image.url(:medium) %>
+					</div>
+				<% end %>
+			</div>
+			</a>
+
+			 <a class = "carousel-control left" href = "#myCarousel<%= l.id %>" data-slide = "prev">
+				<span class = "icon-prev"></span>
+			 </a>
+
+			 <a class = "carousel-control right" href = "#myCarousel<%= l.id %>" data-slide = "next">
+				<span class = "icon-next"></span>
+			 </a>
+		</div>
+	</div>
 <% end %>
+
+
+</div>
+
+<br>
+<br>
+
+<hr>
+
+<div class ="col-md-12">
+
+	<nav aria-label="...">
+		 <ul class="pager">
+	<li class = "col-md-6"><%= button_to 'Previous', listings_path, method: :get, params: { page: @page.to_i - 1} %></li>
+	<li class = "col-md-6"><%= button_to 'Next', listings_path, method: :get, params: { page: @page.to_i + 1} %></li>
+	</nav>
+
+
 </div>
 
 
 
-<%= button_to 'Go to previous page', listings_path, method: :get, params: { page: @page.to_i - 1} %>
-<%= button_to 'Go to next page', listings_path, method: :get, params: { page: @page.to_i + 1} %>
+
+<div class = "col-md-12" >
+
+	<div>
+		<%= form_tag ('/listings/search'), {method: :get} do %>
+		City <%= text_field_tag :city %>
+		  <%= submit_tag "Search"  %>
+		<% end %> 
+	</div>
+
+
+	<div>
+	<!-- <div class="radio_buttons" style="display:none"> -->
+		<p>
+		<%= form_tag ('/listings/search'), {method: :get} do %>
+		
+		 <%= radio_button_tag "room_type", "Private room" %>
+		 <%= label_tag :room_type, "Private room" %>
+		 
+		 <%= radio_button_tag "room_type", "Shared room" %>
+		 <%= label_tag :room_type, "Shared room" %>
+
+		 <%= radio_button_tag "room_type", "Entire place" %>
+		 <%= label_tag :room_type, "Entire place" %>
+		  
+		  <%= submit_tag "Search"  %>
+		<% end %> 
+		</p>
+	</div>
+
+</div> 
 
 

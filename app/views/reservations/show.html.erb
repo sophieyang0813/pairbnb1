@@ -7,46 +7,77 @@
 <!-- Load the Hosted Fields component. -->
 <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
 
-<h1>Reservation successful!</h1>
 
-<h3>Duration: <%= ((@reservation.check_out) - (@reservation.check_in))/86400 %> day(s) </h3>
-<p>Check in: <%= @reservation.check_in.to_date %> </p>
-<p>Check out: <%= @reservation.check_out.to_date %> </p>
-<p>Price per night: USD$<%= @listing.price_per_night %></p>
-
-<h3>total price: USD$ <%= (@listing.price_per_night) * (((@reservation.check_out) - (@reservation.check_in))/86400) %> </h3>
-
-
-
-
-
-
-
-
-
-
-<div class= "demo-frame">
-	<%= form_for :checkout_form, url: listing_reservation_reservations_checkout_path(@listing,@reservation), html: { id: "cardForm"} do |form| %>
-
-	<%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"}  %>
-
-	<div id="card-number" class="hosted-field"></div>
-
-	<%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
-
-	<div id ="expiration-date" class="hosted-field"></div>
-
-	<%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
-    <div id="cvv" class="hosted-field"></div>
-
-	<%= form.hidden_field "payment_method_nonce" %>
-
-	<div class="button-container">
-		<%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %> 
-	</div>
-	<% end %> 
+<div class = "col-md-12 text_center">
+   <h1><strong>Confirm & Pay</strong></h1>
 </div>
 
+
+<div class = "col-md-6 border-right">
+
+  <div class = "leftbox">
+
+    <div class = "col-md-8 text_center">
+      <h3><%= @listing.room_type %> | <%= @listing.location %></h3>
+    </div>
+
+    <div class = "col-mid-4">
+          <% @listing.avatars.each_with_index do |image, i| %>
+              <% if i == 0 %>
+                <%= image_tag image.url(:small) %>
+              <% else%> 
+               <% nil %> 
+              <% end %>
+          <% end %>
+     </div>
+
+    <hr>
+
+     <p>Upto <%=@listing.guest_num %> guest(s) </p>
+     <p class = "inline"> <%= @reservation.check_in.to_date %> -> </p>
+     <p class = "inline"> <%= @reservation.check_out.to_date %> </p>
+
+     <hr> 
+
+    <p class ="inline"> USD$<%= @listing.price_per_night %> * </p>
+    <p class ="inline"><%= ((@reservation.check_out) - (@reservation.check_in))/86400 %> night(s) </p>
+
+    <hr>
+
+    <h3>total(USD$) <%= (@listing.price_per_night) * (((@reservation.check_out) - (@reservation.check_in))/86400) %> </h3>
+
+  </div>
+
+
+</div>
+
+
+
+<div class = "col-md-6">
+
+  <div class= "demo-frame">
+  	<%= form_for :checkout_form, url: listing_reservation_reservations_checkout_path(@listing,@reservation), html: { id: "cardForm"} do |form| %>
+
+  	<%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"}  %>
+
+  	<div id="card-number" class="hosted-field"></div>
+
+  	<%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
+
+  	<div id ="expiration-date" class="hosted-field"></div>
+
+  	<%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
+      <div id="cvv" class="hosted-field"></div>
+
+  	<%= form.hidden_field "payment_method_nonce" %>
+
+  	<div class="button-container">
+  		<%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %> 
+  	</div>
+  	<% end %> 
+  </div>
+
+</div>
 
 
 <!-- Javascript  -->

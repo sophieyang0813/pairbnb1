@@ -1,4 +1,9 @@
 class Listing < ApplicationRecord
+  # include PgSearch 
+  # multisearchable :against => [:guest_num, :location, :room_type, :price_per_night ]
+  
+  # 195 search engine
+  
     # belongs_to :user?
     mount_uploaders :avatars, AvatarUploader #182 upload image
     belongs_to :user
@@ -9,6 +14,8 @@ class Listing < ApplicationRecord
   scope :price_range, -> (price) { where price_per_night: price }
   scope :city, -> (location) { where location: location }
   scope :room_type, -> (type) { where room_type: type }
+  # scope :everything, -> (everything) { where('guest_num = ? OR location = ? OR room_type = ?', '#{everything}', '#{everything}', '#{everything}')}
+  scope :everything, -> (everything) { where(' location = ? OR room_type = ?', "#{everything}", "#{everything}")}
   # scope :dates, -> (checkin, checkout) { where check_in: checkin, check_out: checkout }
 
   # def self.dates 
