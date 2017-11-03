@@ -5,6 +5,22 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+group :production do 
+  # gem 'pg', '~> 0.18' this means only in production; those gems outside production group are for all three 
+  gem 'rails_12factor', '~> 0.0.2'
+  #use unicorn as app server 
+  gem 'unicorn'
+end 
+
+
+
+# gem 'foreman'
+# gem 'rails_12factor'
+# 194 deploy your app on Heroku 
+
+
+
 gem 'pg_search'
 
 gem 'sidekiq'
