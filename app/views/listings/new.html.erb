@@ -1,29 +1,44 @@
-<h1>Hi, <%= current_user.name %>! Let's get started listing your space</h1>
-
-<h2>listing/new</h2>
 
 
 
-<div> What kind of place do you have? </div>
+<br>
+<hr>
+<h2 class = "text_center">Hi, <%= current_user.name %>! Let's get started listing your space</h2>
+<strong><h3 class = "fontgrey text_center"> What kind of place do you have? </h3></strong>
+
+<div class = "col-md-2"></div>
+
+<div class = "col-md-8 box">
+	<br>
+	
+	<br>
+	<%= form_for @listing, url:{action: "create"} do |f| %>
+	     <%= f.text_field :guest_num, Placeholder: "Number of Guest(s)", class: "sgnupbox" %><br>
+	     <%= f.text_field :location, Placeholder: "Location" , class: "sgnupbox" %><br>
+	     <%= f.text_field :price_per_night, Placeholder: "Price per night", class: "sgnupbox" %><br>
+	    <!-- room type?  <#%= f.text_field :room_type %> -->
+		 <%= f.radio_button "room_type", "Private room" %>
+		 <%= f.label :room_type, "Private room", class: "sgnupbox" %>  
+
+		 <%= f.radio_button "room_type", "Shared room" %>
+		 <%= f.label :room_type, "Shared room", class: "sgnupbox" %>  
+
+		 <%= f.radio_button "room_type", "Entire place" %>
+		 <%= f.label :room_type, "Entire place", class: "sgnupbox" %> 
+		 <br>
+		 	 <div class= "col-md-4"></div>
+		     <div class = "col-md-6"><%= f.file_field :avatars, multiple: true, class: "sgnupbox text_center" %></div>
+		     <div class= "col-md-2"><br></div>
+		     <br>
+		      <hr>
+		 <div class ="col-md-12 text_center">
+	    <%= f.submit "Continue", class: "sgnupbox" %><br>
+	    <br>
+	    </div>
+	<% end %>
+	<br>
+</div>
 
 
-<%= form_for @listing, url:{action: "create"} do |f| %>
-    how many guest? <%= f.text_field :guest_num %>
-    location?  <%= f.text_field :location %>
-    Price per night?  <%= f.text_field :price_per_night %>
-    room type?  <!-- <#%= f.text_field :room_type %> -->
-	 <%= f.radio_button "room_type", "Private room" %>
-	 <%= f.label :room_type, "Private room" %>
-
-	 <%= f.radio_button "room_type", "Shared room" %>
-	 <%= f.label :room_type, "Shared room" %>
-
-	 <%= f.radio_button "room_type", "Entire place" %>
-	 <%= f.label :room_type, "Entire place" %>
-
-    photos?  <%= f.file_field :avatars, multiple: true %>
-    <%= f.submit "Continue" %>
-<% end %>
-
-
+<div class = "col-md-2"></div>
 

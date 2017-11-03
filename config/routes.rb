@@ -3,6 +3,7 @@ Rails.application.routes.draw do
      root "listings#index"
 
   get 'listings/search' => 'listings#search'
+  get '/reservations' => 'reservations#index'
 
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
 
