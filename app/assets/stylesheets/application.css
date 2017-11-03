@@ -17,7 +17,6 @@
 
 
 body {
-
 	font-family: 'Comfortaa', cursive;
 }
 
@@ -36,11 +35,10 @@ body {
     border-radius: 10px;
    /* text-align:center;*/
    font-family: 'Comfortaa', cursive;
-
 }
 
 .container {
-  text-align: center ;
+  text-align: center;
 }
 
 
@@ -50,7 +48,6 @@ body {
     background-color: rgba(192,192,192,0.2);
     border-radius: 8px;
     font-family: 'Comfortaa', cursive;
-    /*text-align: center;*/
 }
 
 
@@ -60,7 +57,6 @@ body {
 
 
 .box {
-
     border: 3px solid rgba(192,192,192,0.1);
     background-color: rgba(192,192,192,0.2);
     border-radius: 8px;
@@ -69,8 +65,6 @@ body {
 }
 
 
-
-}
 
 
 /* listings#index */
@@ -101,8 +95,6 @@ body {
 
 .navbar-nav>li>a {
     padding-top: 25px;
-
-
   }
 
 .navbar {
@@ -121,7 +113,6 @@ body {
     border-radius: 10px;
     text-align:center;
    font-family: 'Comfortaa', cursive;
-
 }
 
 
@@ -158,10 +149,8 @@ body {
 }
 
 .calendar_box {
-
   border-radius: 8px;
   font-family: 'Comfortaa', cursive;
-
 }
 
 
@@ -212,7 +201,6 @@ body {
     border-radius: 8px;
     font-family: 'Comfortaa', cursive;
     height:auto;
-
  }
 
 
