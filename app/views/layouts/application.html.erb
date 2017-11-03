@@ -107,7 +107,9 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+             <a href="/listings">
+              <%= image_tag "airbnb_logo_small.png", class: "navbar-brand" %>
+              </a>
           </div>
 
 
@@ -117,13 +119,16 @@
             </ul>
             <form class="navbar-form navbar-left">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                    <%= form_tag ('/listings/search'), {method: :get} do  %>
+                    <%= text_field_tag :everything, '', class: 'srchbox' , placeholder: "Where would you like to go?" %>
+               </div>
+                    <% end %> 
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
+
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Host</a></li>
-              <li><a href="#">Trip</a></li>
+    <!--           <li><a href="#">Host</a></li>
+              <li><a href="#">Trip</a></li> -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in<span class="caret"></span></a>
                 <ul class="dropdown-menu">
