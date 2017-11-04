@@ -20,6 +20,8 @@ end
 # 194 deploy your app on Heroku 
 
 
+gem "skylight"
+# app speed
 
 gem 'pg_search'
 
