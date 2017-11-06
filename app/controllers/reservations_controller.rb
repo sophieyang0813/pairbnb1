@@ -3,7 +3,8 @@ class ReservationsController <  ApplicationController
 
   def new 
    @reservation = Reservation.new
-   @listing = Listing.find(params[:listing_id])
+   @listing = Listing.find_by(id: params[:listing_id])
+   # @host = Listing.find_by(id: params[:listing_id]).user_id
   end
 
 

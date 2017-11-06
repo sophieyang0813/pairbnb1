@@ -15,14 +15,16 @@
 
 <div class = "center_box">
 
-<% @listings.each do |l| %>
+<% @listings.order(created_at: :desc).each do |l| %>
 	<div class = "col-md-4 border-right padding">
 	<p class ="inline"><strong>USD$<%= l.price_per_night %></strong></p>
 	<p class ="inline"> | <%= l.location %></p>
 	<p class = "fontgrey"><%= l.room_type %></p>
 
+
 	<!-- <p> Update your listing? <#%= link_to "listing" + l.id.to_s , edit_listing_path(l.id) %></p> -->
-		
+	
+
 		<div id='myCarousel<%= l.id %>' class='carousel slide col-md-4'>
 			<ol class = "carousel-indicators">
 				<% l.avatars.length.times do |i| %>

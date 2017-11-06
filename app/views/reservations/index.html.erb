@@ -11,18 +11,19 @@
 
 <div class = "col-md-12 center1" >
 
-	<% current_user.reservations.each do |x| %>
-	<div class = " col-md-4 box">
+	<% current_user.reservations.order(created_at: :desc).each do |x| %>
+	<div class = "col-md-4 box">
 		<h3>USD$<%=x.listing.price_per_night %> | <%= x.listing.location %></h3>
 		<p class= "fontgrey inline"><%= x.listing.room_type %></p>
 		<p class = "fontgrey inline"> | <%= x.check_in.to_date %> -> <%= x.check_out.to_date %></p>
-
+		<p>Reservation was made on <%= x.created_at.to_date %> </p>
 		<% x.listing.avatars.each_with_index do |image, i| %>
 			<% if i == 0 %>
 				<br>
 				<%= image_tag image.url(:medium) %>
 				<br>
 				<br>
+				<p> update  your reservation? <%=x.id%> </p>
 				<br>
 			 <% else %>
 			 	<% nil %>

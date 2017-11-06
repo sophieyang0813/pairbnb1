@@ -1,36 +1,45 @@
 
 
 
-<h1> Update your listing </h1>
+<br>
 
-  <%= form_for @listing do |form| %>
-        <div class="text-field">
-          <%= form.label :room_type %>
-          <%= form.text_field :room_type, type: 'room_type' %>
-        </div>
-
-        <div class="text-field">
-          <%= form.label :guest_num %>
-          <%= form.text_field :guest_num, type:'guest_num' %>
-        </div>
+<div class ="sgnupbox center">
+ 
+  <h1 class = "text_center"> Update your listing</h1>
+  <br>
+    <%= form_for @listing do |form| %>
+          <div class="text-field">
+            <%= form.label :room_type %>
+            <%= form.text_field :room_type, type: 'room_type' %>
+          </div>
 
           <div class="text-field">
-          <%= form.label :price_per_night %>
-          <%= form.text_field :price_per_night, type:'price_per_night' %>
-        </div>
+            <%= form.label :guest_num %>
+            <%= form.text_field :guest_num, type:'guest_num' %>
+          </div>
 
-         <div class="text-field">
-          <%= form.label :location %>
-          <%= form.text_field :location, type:'location' %>
-        </div>
+          <div class="text-field">
+            <%= form.label :price_per_night %>
+            <%= form.text_field :price_per_night, type:'price_per_night' %>
+          </div>
 
+           <div class="text-field">
+            <%= form.label :location %>
+            <%= form.text_field :location, type:'location' %>
+          </div>
 
-        <div>
-          <%= form.file_field :avatars, multiple: true %>
-        </div>
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+            <div class = "col-md-4"></div>
+             <div class = "col-md-4">
+              <%= form.file_field :avatars, multiple: true %>
+            </div>
+            <div class = "col-md-4"></div>
 
-  <% end %>
+      <div class="submit-field">
+        <hr>
+        <%= form.submit %>
+      </div>
+
+    <% end %>
+    <br>
+    <br>
 </div>

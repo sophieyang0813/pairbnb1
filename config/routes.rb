@@ -3,7 +3,12 @@ Rails.application.routes.draw do
      root "listings#index"
 
   get 'listings/search' => 'listings#search'
+
+  # reservations
   get '/reservations' => 'reservations#index'
+  # delete '/reservations/delete' => 'reservations#destroy', as: "delete_reservation"
+  # resources :reservations, controller: "reservations", only: [:update]
+
 
   resources :passwords, controller: "passwords", only: [:create, :new, :edit]
 

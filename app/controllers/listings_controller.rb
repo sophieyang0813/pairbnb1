@@ -45,7 +45,7 @@ class ListingsController <  ApplicationController
 
       
       def index
-        #180 pagination 
+      
         if params[:page]# iahve parms page, i offset by the params page #true(not false or not nil))
           if params[:page].empty? #params page is empty
             @page = 1

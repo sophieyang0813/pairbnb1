@@ -71,7 +71,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Host<span class="caret"></span></a>
               <ul class="dropdown-menu">
                  <li><%= link_to "Discover hosting", new_listing_path %></li>
-                 <li><%= link_to "Your posting", user_path(current_user) %></li>
+                 <li><%= link_to "Reservations", user_path(current_user) %></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -79,10 +79,11 @@
               <ul class="dropdown-menu">
                  <li><%= link_to "Update your profile", edit_user_path(current_user) %></li> 
                   <li role="separator" class="divider"></li>
-                  <li>Signed in as: <%= current_user.email %></li>
-                 <li><%= button_to 'Sign out', sign_out_path, method: :delete %></li>
+                  <!-- <li>Signed in as: <%= current_user.email %></li> -->
+                 <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
               </ul>
             </li>
+
 
 
 

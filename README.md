@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+<!-- why this does not work? Q1 host photo ^ also I broke this page code.
+<%= #image_tag @host.avatar_url(:small).to_s %> -->
